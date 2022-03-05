@@ -22,6 +22,18 @@ class HSVColorSelector extends StatefulWidget {
 class _HSVColorSelectorState extends State<HSVColorSelector> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TweenAnimationBuilder<double>(
+            tween: Tween<double>(begin: 0.0, end: 360.0),
+            duration: Duration(milliseconds: 1500),
+            builder: (context, hue, child) {
+              final hsvColor = HSVColor.fromAHSV(1.0, hue, 1.0, 1.0);
+              return Container(
+                  width: 200, height: 200, color: hsvColor.toColor());
+            }),
+      ],
+    );
   }
 }

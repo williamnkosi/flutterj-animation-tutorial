@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AnimatedOpacityPage extends StatefulWidget {
@@ -6,6 +8,14 @@ class AnimatedOpacityPage extends StatefulWidget {
 }
 
 class AnimatedOpacityPageState extends State<AnimatedOpacityPage> {
+  double _opacity = 1.0;
+  final random = Random();
+  _changeOpacity() {
+    setState(() {
+      _opacity = random.nextDouble().toDouble();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +27,7 @@ class AnimatedOpacityPageState extends State<AnimatedOpacityPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedOpacity(
-              opacity: 1.0,
+              opacity: _opacity,
               duration: Duration(seconds: 1),
               curve: Curves.fastOutSlowIn,
               child: FlutterLogo(size: 200),
@@ -25,7 +35,7 @@ class AnimatedOpacityPageState extends State<AnimatedOpacityPage> {
             ElevatedButton(
               child: Text('Fade Logo'),
               // TODO: Implement
-              onPressed: null,
+              onPressed: _changeOpacity,
             ),
           ],
         ),
